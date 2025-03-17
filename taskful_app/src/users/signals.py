@@ -7,14 +7,12 @@ from .models import Profile
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
-    print("******Creating user profile")
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(pre_save, sender=User)
 def set_username(sender, instance, **kwargs):
-    print("******Setting username")
     if not instance.username:
         username = f"{instance.first_name}_{instance.last_name}".lower()
         counter = 1
