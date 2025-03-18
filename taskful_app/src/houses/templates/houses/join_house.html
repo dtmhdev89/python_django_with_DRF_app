@@ -1,0 +1,4 @@
+<form method="post" action="{% url 'house-join' pk=house.pk %}">
+    {% csrf_token %}
+    <button type="submit">Join</button>
+</form>
