@@ -23,9 +23,9 @@ from users import router as users_api_router
 auth_api_urls = [
     path(r"", include("rest_framework_social_oauth2.urls")),
 ]
+
 if settings.DEBUG:
     auth_api_urls.append(path(r"verify/", include("rest_framework.urls")))
-
 
 api_urls_patterns = [
     path(r"auth/", include(auth_api_urls)),
@@ -34,5 +34,5 @@ api_urls_patterns = [
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include(api_urls_patterns)),
+    path("api/", include(api_urls_patterns))
 ]
