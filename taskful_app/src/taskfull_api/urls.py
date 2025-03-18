@@ -17,7 +17,9 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 from users import router as users_api_router
+from houses import router as houses_api_router
 
 
 auth_api_urls = [
@@ -30,9 +32,14 @@ if settings.DEBUG:
 api_urls_patterns = [
     path(r"auth/", include(auth_api_urls)),
     path(r"accounts/", include(users_api_router.router.urls)),
+    path(r"houses/", include(houses_api_router.router.urls))
 ]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(api_urls_patterns))
 ]
+
+if settings.DEBUG:
+    static_url = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns.extend(static_url)

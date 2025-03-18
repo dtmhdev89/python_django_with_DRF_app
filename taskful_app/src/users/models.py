@@ -12,7 +12,7 @@ class GenerateProfileImagePath(object):
 
     def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        path = f'media/accounts/{instance.user.id}/images/'
+        path = f'accounts/{instance.user.id}/images/'
         name = f'profile_image.{ext}'
 
         return os.path.join(path, name)
@@ -28,6 +28,13 @@ class Profile(models.Model):
         upload_to=user_profile_image_path,
         blank=True,
         null=True)
+    house = models.ForeignKey(
+        "houses.House",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="members"
+    )
 
     def __str__(self):
         return f'{self.user.username}\'s Profile'

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from .models import Profile
 from rest_framework import viewsets, mixins
+from .models import Profile
 from .serializers import UserSerializer, ProfileSerializer
 from .permissions import IsUserOwnerOrGetAndPostOnly, IsProfileOwnerOrReadOnly
 
