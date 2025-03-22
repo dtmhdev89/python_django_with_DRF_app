@@ -15,6 +15,12 @@ class HouseSerializer(serializers.ModelSerializer):
         many=False,
         view_name="profile-detail"
     )
+    task_lists = serializers.HyperlinkedRelatedField(
+        read_only=True,
+        many=True,
+        view_name="tasklist-detail",
+        source="lists" # lists is a related name as a relationship between House and TaskList model in tasks app
+    )
 
     class Meta:
         model = House
@@ -22,7 +28,7 @@ class HouseSerializer(serializers.ModelSerializer):
             'url', 'id', 'image', 'name', 'created_on',
             'manager', 'description', 'members_count', 'points',
             'completed_tasks_count', 'not_completed_tasks_count',
-            'members'
+            'members', "task_lists"
         ]
         read_only_fields = [
             "points",
