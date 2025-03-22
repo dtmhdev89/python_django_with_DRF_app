@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     "social_django",
     "rest_framework_social_oauth2",
     "django_filters",
+    "background_task",
     "users",
     "houses",
-    "tasks"
+    "tasks",
+    "background_jobs"
 ]
 
 MIDDLEWARE = [
@@ -150,6 +152,12 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = "static/"
+
+# DEFAULT_FILE__STORAGE =
+# GS_BUCKET_NAME =
+# GS_FILE_OVERWRITE = True
+# from google.oauth2 import service_account
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file("path/to/credentials.json")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
