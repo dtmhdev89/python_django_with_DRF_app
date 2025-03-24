@@ -85,11 +85,25 @@ WSGI_APPLICATION = "taskfull_api.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+import environ
+env = environ.Env()
+env_path = os.path.join(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(__file__)
+        )
+    ),
+    ".env"
+)
+env.read_env(env_path)
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USERNAME"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT")
     }
 }
 
